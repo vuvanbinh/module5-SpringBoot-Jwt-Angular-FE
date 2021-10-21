@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="col-12" style="margin-top: 20px">
+    <mat-card style="margin: 20px 0">
+      <form class="form-register" #f="ngForm" (ngSubmit)="f.form.valid && ngSubmit()" novalidate>
+        <mat-error class="alert alert-primary">{{status}}</mat-error>
+<!--    FullName-->
+        <p>
+          <mat-form-field style="width: 400px" appearance="outline">
+            <mat-label>Nhập tên:</mat-label>
+            <input matInput placeholder="Placeholder" name="fullName" [(ngModel)]="form.fullName"
+                   required #fullName="ngModel" minlength="3" maxlength="20">
+            <mat-error *ngIf="fullName.hasError('required')">Ô nhập tên đang bị bỏ trống, vui lòng điền!</mat-error>
+            <mat-error *ngIf="fullName.hasError('minlength')">Độ dài của tên phải là từ 3 đến 20 ký tự</mat-error>
+            <mat-icon matSuffix>account_circle</mat-icon>
+          </mat-form-field>
+        </p>
+      <!--Email-->
+        <p>
+          <mat-form-field style="width: 400px" appearance="outline">
+            <mat-label>Email:</mat-label>
+            <input matInput placeholder="Placeholder" name="email" [(ngModel)]="form.email"
+                   [formControl]="emailFormControl">
+            <mat-error *ngIf="emailFormControl.hasError('required')">Ô nhập Email đang bị bỏ trống, vui lòng nhập vào!</mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('email')">Nhập vào đúng định dạng email, ví dụ:binh@gamil.com</mat-error>
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+        </p>
+<!--        PASSWORD-->
+        <p>
+          <mat-form-field style="width: 400px" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="form.password"
+                    required #password="ngModel" minlength="6">
+            <mat-error *ngIf="password.hasError('required')">Chưa nhập password, mời nhập vào</mat-error>
+            <mat-error *ngIf="password.hasError('minlength')">Mật khẩu phải 6 kí tự trở lên</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </p>
+<!--        ADDRESS-->
+        <p>
+          <mat-form-field style="width: 400px" appearance="outline">
+            <mat-label>Address:</mat-label>
+            <input matInput name="address" [(ngModel)]="form.address">
+          </mat-form-field>
+          <br>
+          <button mat-stroked-button color="primary" class="mat-raised-button ">Submit</button>
+        </p>
+      </form>
+    </mat-card>
+  </div>
+</div>
+

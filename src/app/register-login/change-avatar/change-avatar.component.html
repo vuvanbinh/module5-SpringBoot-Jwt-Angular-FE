@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+      <mat-card style="margin: 50px 0">
+        <mat-error *ngIf=" status!='' ">{{status}}</mat-error>
+        <app-upload-avatar (giveURLtoCreate)="onChangeAvatar($event)"></app-upload-avatar>
+        <button (click)="changeAvatar()">Change Avatar</button>
+      </mat-card>
+    </div>
+  </div>
+</div>
